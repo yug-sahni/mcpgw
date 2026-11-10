@@ -1,0 +1,4 @@
+* text=auto eol=lf
+*.jsonl text eol=lf linguist-generated=false
+*.sqlite binary
+*.npy binary

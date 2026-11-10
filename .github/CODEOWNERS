@@ -1,0 +1,9 @@
+# Replace @dev1 / @dev2 with real GitHub handles.
+/src/mcpgw/contracts/    @dev1 @dev2
+/src/mcpgw/retrieval/    @dev1
+/src/mcpgw/dataset/      @dev1
+/src/mcpgw/evaluation/   @dev1
+/src/mcpgw/ingest/       @dev2
+/src/mcpgw/registry/     @dev2
+/src/mcpgw/gateway/      @dev2
+/src/mcpgw/cli/          @dev2
