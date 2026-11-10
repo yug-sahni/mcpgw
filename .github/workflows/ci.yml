@@ -2,7 +2,7 @@ name: ci
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [main, dev]
 jobs:
   check:
     # Windows is a supported development platform (docs/adr/0002-windows-support.md).

@@ -3,8 +3,13 @@
 Status: accepted. Date: 2026-11-10.
 
 ## Context
-Two developers work in parallel. Workstream A owns retrieval, benchmark and evaluation.
-Workstream B owns ingestion, registry, gateway and CLI. They meet only at the contracts below.
+Two developers work in parallel, with ownership as in the 8-week plan. Developer 1 owns ingestion,
+registry, indexer, retrieval, gateway and the engineering parts of the CLI (M1–M5, M8). Developer 2
+owns the corpus, dataset, evaluation and the research and reporting parts of the CLI (M6, M7, M8).
+They meet only at the contracts below.
+
+(Amended 2026-11-10: this ADR first used "Workstream A/B" names with retrieval on the research
+side; it now matches the plan.)
 
 ## Decision
 All shared types live in `mcpgw.contracts`. Both developers must review any change to it.

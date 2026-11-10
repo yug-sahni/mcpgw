@@ -1,9 +1,20 @@
-# Replace @dev1 / @dev2 with real GitHub handles.
-/src/mcpgw/contracts/    @dev1 @dev2
-/src/mcpgw/retrieval/    @dev1
-/src/mcpgw/dataset/      @dev1
-/src/mcpgw/evaluation/   @dev1
-/src/mcpgw/ingest/       @dev2
-/src/mcpgw/registry/     @dev2
-/src/mcpgw/gateway/      @dev2
-/src/mcpgw/cli/          @dev2
+# Ownership follows the 8-week plan (docs/adr/0001-interfaces.md).
+# Developer 1 = @yug-sahni. Replace @dev2 with Developer 2's GitHub handle.
+
+# Shared contracts: both developers review every change.
+/src/mcpgw/contracts/    @yug-sahni @dev2
+/docs/adr/               @yug-sahni @dev2
+
+# Developer 1: M1–M5 and engineering CLI
+/src/mcpgw/ingestion/    @yug-sahni
+/src/mcpgw/registry/     @yug-sahni
+/src/mcpgw/indexer/      @yug-sahni
+/src/mcpgw/retrieval/    @yug-sahni
+/src/mcpgw/gateway/      @yug-sahni
+/src/mcpgw/cli/          @yug-sahni
+/src/mcpgw/config.py     @yug-sahni
+
+# Developer 2: M6, M7 and research reporting
+/src/mcpgw/dataset/      @dev2
+/src/mcpgw/evaluation/   @dev2
+/src/mcpgw/reporting/    @dev2
