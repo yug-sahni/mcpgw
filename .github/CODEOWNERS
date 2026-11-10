@@ -1,11 +1,11 @@
 # Ownership follows the 8-week plan (docs/adr/0001-interfaces.md).
-# Developer 1 = @yug-sahni. Replace @dev2 with Developer 2's GitHub handle.
+# Developer 1 = @yug-sahni. Developer 2 = @AgamGulati.
 
 # Shared contracts: both developers review every change.
-/src/mcpgw/contracts/    @yug-sahni @dev2
-/docs/adr/               @yug-sahni @dev2
+/src/mcpgw/contracts/    @yug-sahni @AgamGulati
+/docs/adr/               @yug-sahni @AgamGulati
 
-# Developer 1: M1–M5 and engineering CLI
+# Developer 1: M1-M5 and engineering CLI
 /src/mcpgw/ingestion/    @yug-sahni
 /src/mcpgw/registry/     @yug-sahni
 /src/mcpgw/indexer/      @yug-sahni
@@ -15,6 +15,6 @@
 /src/mcpgw/config.py     @yug-sahni
 
 # Developer 2: M6, M7 and research reporting
-/src/mcpgw/dataset/      @dev2
-/src/mcpgw/evaluation/   @dev2
-/src/mcpgw/reporting/    @dev2
+/src/mcpgw/dataset/      @AgamGulati
+/src/mcpgw/evaluation/   @AgamGulati
+/src/mcpgw/reporting/    @AgamGulati
