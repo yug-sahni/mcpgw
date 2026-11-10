@@ -9,6 +9,7 @@ htmlcov/
 dist/
 *.egg-info/
 .env
+mcpgw.yaml
 *.sqlite
 *.sqlite-wal
 *.sqlite-shm

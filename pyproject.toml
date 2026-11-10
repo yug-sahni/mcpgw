@@ -10,6 +10,7 @@ dependencies = [
     "structlog>=24.1",
     "pyyaml>=6.0",
     "jsonschema>=4.21",
+    "mcp>=1.10",
 ]
 
 [project.scripts]
@@ -53,6 +54,7 @@ files = ["src", "tests"]
 testpaths = ["tests"]
 addopts = "-ra --strict-markers"
 asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
 markers = [
     "slow: tests that download models or call external services",
     "integration: tests that spawn subprocesses or servers",

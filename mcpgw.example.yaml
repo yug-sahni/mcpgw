@@ -1,0 +1,58 @@
+# Example configuration (SRS Part 8.2). Copy to mcpgw.yaml, which is git-ignored.
+# No secrets go in this file: `env` and `headers_env` name *host* environment variables.
+# Relative paths are resolved against this file's directory.
+config_version: 1
+data_dir: ./data
+db_path: ./data/mcpgw.sqlite
+index_dir: ./indexes
+
+upstreams:
+  # Package names are illustrative; use the servers chosen under open decision Q2.
+  - alias: fs
+    transport: stdio
+    command: npx
+    args: ["-y", "@modelcontextprotocol/server-filesystem", "./data"]
+    timeout_s: 30
+  - alias: github
+    transport: stdio
+    command: npx
+    args: ["-y", "@modelcontextprotocol/server-github"]
+    env: { GITHUB_PERSONAL_ACCESS_TOKEN: GITHUB_TOKEN } # server variable: host variable
+  # - alias: remote-docs
+  #   transport: streamable_http
+  #   url: https://mcp.example.com/mcp
+  #   headers_env: { Authorization: DOCS_AUTH_HEADER }
+
+ingest: { concurrency: 4, max_pages: 100, timeout_s: 30, max_tools_per_server: 5000 }
+
+retrieval:
+  retriever: hybrid_rerank # random | bm25 | dense | hybrid | hybrid_rerank
+  text_repr: name_desc # name | name_desc | name_desc_params
+  with_expansion: false
+  # embedding: { model: sentence-transformers/all-MiniLM-L6-v2, revision: PINNED_REVISION }
+  # reranker: { model: PINNED_RERANKER, revision: PINNED_REVISION, candidates: 30 }
+  rrf: { constant: 60, weights: [1.0, 1.0] }
+  depth: 100
+  search: { default_k: 8, max_k: 50, compact: false }
+
+gateway:
+  transport: stdio # stdio | http
+  host: 127.0.0.1
+  port: 8765
+  mcp_path: /mcp
+  call_timeout_s: 60
+  refresh_debounce_s: 2
+  max_result_bytes: 10485760
+  per_upstream_concurrency: 8
+  cache: { entries: 256, ttl_s: 600 }
+  policy: { allow: [], deny: [] }
+
+llm:
+  provider: null # open decision Q4
+  model: null
+  cache_dir: ./data/llm_cache
+  budget_usd: 50
+
+dataset: { near_duplicate_threshold: 0.85, leakage_threshold: null, second_review_fraction: 0.2, dev_ratio: 0.6 }
+evaluation: { candidate_sizes: [50, 200, 1000], seeds: [1, 2, 3], bootstrap_resamples: 1000, repeats: 3, max_turns: 6, near_duplicate_fraction: 0.2 }
+logging: { level: INFO, log_queries: false }
