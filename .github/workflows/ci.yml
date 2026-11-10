@@ -5,13 +5,23 @@ on:
     branches: [main]
 jobs:
   check:
-    runs-on: ubuntu-latest
+    # Windows is a supported development platform (docs/adr/0002-windows-support.md).
+    runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
+        os: [ubuntu-latest, windows-latest]
         python: ["3.11", "3.12"]
+        include:
+          - os: windows-latest # the primary developer's local interpreter
+            python: "3.14"
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v3
       - run: uv python install ${{ matrix.python }}
       - run: uv sync --python ${{ matrix.python }}
-      - run: make check
+      # Same steps as `make check`, spelled out so they also run where `make` is absent.
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run mypy
+      - run: uv run pytest -m "not slow"

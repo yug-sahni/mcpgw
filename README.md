@@ -7,9 +7,18 @@ Goals: efficiency (fewer tool tokens), accuracy (relevant tools retrieved), scal
 Task success is *measured*, not assumed.
 
 ## Develop
+Works on Windows, Linux and macOS (see `docs/adr/0002-windows-support.md`). Install
+[uv](https://docs.astral.sh/uv/) first (`winget install --id=astral-sh.uv -e` on Windows).
 ```bash
 uv sync
-make check
+make check   # Linux/macOS shortcut for the four commands below
+```
+Without `make` (for example on Windows):
+```bash
+uv run ruff check .
+uv run ruff format --check .
+uv run mypy
+uv run pytest -m "not slow"
 ```
 See `docs/adr/` for interface decisions.
 
